@@ -796,14 +796,7 @@
         </div>
     </section>
 
-    <!-- Portfolio Section -->
-    <section class="skills-section" id="portfolio-work" style="padding-top: 4rem;">
-        <h2 class="section-title fade-in">ISHLARIM</h2>
-        <div id="dynamic-portfolios-grid" class="skills-grid fade-in">
-            <!-- Portfolios will be fetched and injected here via JS -->
-            <p style="text-align:center;width:100%;color:var(--text-secondary)">Yuklanmoqda...</p>
-        </div>
-    </section>
+
 
     <!-- Tech Stack -->
     <section class="tech-stack" id="tech">
@@ -1009,41 +1002,7 @@
                 logo.style.transform = 'translate(0, 0)';
             }, 50);
         }, 5000);
-        // Fetch and display portfolios
-        async function loadPortfolios() {
-            const grid = document.getElementById('dynamic-portfolios-grid');
-            if (!grid) return;
-            
-            try {
-                // Determine API URL based on environment
-                // QACHONKI VERCEL GA YUKLASANGIZ, SHU YERDAGI 'https://admin-ozodbek.vercel.app/api/portfolios' Yozuvini o'z Vercel manzilingizga almashtiring!
-                const API_URL = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') 
-                    ? 'http://localhost:3000/api/portfolios' 
-                    : 'https://admin-ozodbek.vercel.app/api/portfolios';
-                    
-                const res = await fetch(API_URL);
-                if (res.ok) {
-                    const portfolios = await res.json();
-                    if (portfolios.length > 0) {
-                        grid.innerHTML = portfolios.map(p => `
-                            <div class="skill-card flex flex-col pt-4">
-                                ${p.image_url ? `<img src="${p.image_url}" alt="${p.title}" style="width:100%;height:180px;object-fit:cover;margin-bottom:1rem;border-radius:4px;border:1px solid var(--neon-cyan);"/>` : ''}
-                                <h3 style="font-family:'Orbitron',sans-serif;font-size:1.5rem;color:var(--neon-cyan);margin-bottom:1rem;">${p.title}</h3>
-                                <p style="color:var(--text-secondary);font-size:0.95rem;line-height:1.6;margin-bottom:1rem;flex:1;">${p.description}</p>
-                                ${p.url ? `<a href="${p.url}" target="_blank" style="color:var(--text-primary);text-decoration:none;border-bottom:1px solid var(--neon-magenta);display:inline-block;padding-bottom:2px;margin-top:auto;">Loyihani ochish &rarr;</a>` : ''}
-                            </div>
-                        `).join('');
-                    } else {
-                        grid.innerHTML = '<p style="text-align:center;width:100%;color:var(--text-secondary)">Hozircha malumot yo\'q.</p>';
-                    }
-                }
-            } catch (err) {
-                console.error("Error loading portfolios:", err);
-                grid.innerHTML = '<p style="text-align:center;width:100%;color:red;">Backend server bilan ulanishda xatolik yuz berdi.</p>';
-            }
-        }
-        
-        loadPortfolios();
+
     </script>
 </body>
 </html>
