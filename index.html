@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ozodbek Kamolov | Digital Craftsman</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-darker: #050505;
+            --neon-cyan: #00fff9;
+            --neon-magenta: #ff00ff;
+            --neon-yellow: #ffff00;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent-gradient: linear-gradient(135deg, var(--neon-cyan), var(--neon-magenta));
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Space Mono', monospace;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Grid Background */
+        .grid-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 249, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 249, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes gridMove {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(50px, 50px);
+            }
+        }
+
+        /* Glitch effect */
+        .glitch {
+            position: relative;
+            animation: glitch-anim 3s infinite;
+        }
+
+        @keyframes glitch-anim {
+            0%, 90%, 100% {
+                transform: translate(0);
+            }
+            92% {
+                transform: translate(-2px, 2px);
+            }
+            94% {
+                transform: translate(2px, -2px);
+            }
+            96% {
+                transform: translate(-2px, -2px);
+            }
+            98% {
+                transform: translate(2px, 2px);
+            }
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.5rem 3rem;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--neon-cyan);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(0, 255, 249, 0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--neon-cyan);
+            transition: width 0.3s;
+            box-shadow: 0 0 10px var(--neon-cyan);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--neon-cyan);
+            text-shadow: 0 0 10px var(--neon-cyan);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 8rem 2rem 4rem;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .hero-text h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-text .terminal {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .terminal::before {
+            content: '> ';
+            color: var(--neon-cyan);
+        }
+
+        .typing-effect {
+            display: inline-block;
+            border-right: 2px solid var(--neon-cyan);
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% {
+                border-color: var(--neon-cyan);
+            }
+            51%, 100% {
+                border-color: transparent;
+            }
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 2px solid var(--neon-cyan);
+            background: transparent;
+            color: var(--text-primary);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--neon-cyan);
+            transition: left 0.3s;
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            left: 0;
+        }
+
+        .btn:hover {
+            color: var(--bg-dark);
+            box-shadow: 0 0 20px var(--neon-cyan);
+        }
+
+        .btn-secondary {
+            border-color: var(--neon-magenta);
+        }
+
+        .btn-secondary::before {
+            background: var(--neon-magenta);
+        }
+
+        .btn-secondary:hover {
+            box-shadow: 0 0 20px var(--neon-magenta);
+        }
+
+        .hero-image-container {
+            position: relative;
+            animation: fadeInRight 1s ease-out 0.4s both;
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-image {
+            position: relative;
+            width: 100%;
+            max-width: 450px;
+            aspect-ratio: 3/4;
+            clip-path: polygon(20% 0%, 100% 0%, 100% 80%, 80% 100%, 0% 100%, 0% 20%);
+            overflow: hidden;
+            border: 3px solid var(--neon-cyan);
+            box-shadow: 
+                0 0 30px rgba(0, 255, 249, 0.3),
+                inset 0 0 30px rgba(0, 255, 249, 0.1);
+            transition: all 0.5s ease;
+        }
+
+        .hero-image:hover {
+            box-shadow: 
+                0 0 50px rgba(0, 255, 249, 0.5),
+                inset 0 0 50px rgba(0, 255, 249, 0.2);
+            transform: translateY(-10px) rotate(2deg);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(20%) contrast(110%);
+            transition: all 0.5s ease;
+        }
+
+        .hero-image:hover img {
+            filter: grayscale(0%) contrast(120%);
+            transform: scale(1.05);
+        }
+
+        /* Floating elements */
+        .float-element {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border: 2px solid var(--neon-cyan);
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .float-element:nth-child(1) {
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .float-element:nth-child(2) {
+            bottom: 10%;
+            right: 5%;
+            animation-delay: 2s;
+            border-color: var(--neon-magenta);
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+            }
+        }
+
+        /* Skills Section */
+        .skills-section {
+            padding: 8rem 2rem;
+            position: relative;
+            background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-darker) 100%);
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 4rem;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--accent-gradient);
+            box-shadow: 0 0 20px var(--neon-cyan);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .skill-card {
+            background: rgba(0, 255, 249, 0.03);
+            border: 2px solid rgba(0, 255, 249, 0.2);
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 249, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .skill-card:hover::before {
+            left: 100%;
+        }
+
+        .skill-card:hover {
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 30px rgba(0, 255, 249, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .skill-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--neon-cyan);
+        }
+
+        .skill-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* Tech Stack */
+        .tech-stack {
+            padding: 8rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .tech-item {
+            aspect-ratio: 1;
+            background: rgba(255, 0, 255, 0.05);
+            border: 2px solid rgba(255, 0, 255, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            clip-path: polygon(15% 0%, 100% 0%, 100% 85%, 85% 100%, 0% 100%, 0% 15%);
+        }
+
+        .tech-item:hover {
+            border-color: var(--neon-magenta);
+            box-shadow: 0 0 30px rgba(255, 0, 255, 0.4);
+            transform: translateY(-10px) scale(1.05);
+        }
+
+        .tech-item svg {
+            width: 60px;
+            height: 60px;
+            fill: var(--neon-magenta);
+            margin-bottom: 1rem;
+        }
+
+        .tech-item span {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 8rem 2rem;
+            background: var(--bg-darker);
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 1.2rem;
+            background: rgba(0, 255, 249, 0.05);
+            border: 2px solid rgba(0, 255, 249, 0.3);
+            color: var(--text-primary);
+            font-family: 'Space Mono', monospace;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s;
+            clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 20px rgba(0, 255, 249, 0.2);
+        }
+
+        .form-textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--neon-cyan);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .submit-btn {
+            align-self: flex-start;
+            padding: 1.2rem 3rem;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            background: transparent;
+            border: 3px solid var(--neon-cyan);
+            color: var(--text-primary);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+            clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--neon-cyan);
+            transition: left 0.4s;
+            z-index: -1;
+        }
+
+        .submit-btn:hover::before {
+            left: 0;
+        }
+
+        .submit-btn:hover {
+            color: var(--bg-dark);
+            box-shadow: 0 0 30px var(--neon-cyan);
+        }
+
+        /* Footer */
+        .footer {
+            padding: 3rem 2rem;
+            text-align: center;
+            background: var(--bg-dark);
+            border-top: 2px solid var(--neon-cyan);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border: 2px solid var(--neon-cyan);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--neon-cyan);
+            text-decoration: none;
+            transition: all 0.3s;
+            clip-path: polygon(30% 0%, 100% 0%, 70% 100%, 0% 100%);
+        }
+
+        .social-link:hover {
+            background: var(--neon-cyan);
+            color: var(--bg-dark);
+            box-shadow: 0 0 20px var(--neon-cyan);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            letter-spacing: 1px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 3.5rem;
+            }
+
+            .hero-image-container {
+                display: flex;
+                justify-content: center;
+            }
+
+            .cta-buttons {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                padding: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.8rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-text .terminal {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .tech-grid {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                gap: 1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="grid-background"></div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="logo glitch">OZODBEK.DEV</div>
+        <ul class="nav-links">
+            <li><a href="#home">Bosh sahifa</a></li>
+            <li><a href="#skills">Malakalar</a></li>
+            <li><a href="#tech">Texnologiyalar</a></li>
+            <li><a href="#contact">Aloqa</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="float-element"></div>
+        <div class="float-element"></div>
+        
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Ozodbek<br>Kamolov</h1>
+                <p class="terminal"><span class="typing-effect">Web & UI/UX Dizayner • Frontend Dasturchi</span></p>
+                <p>
+                    Zamonaviy web tajribalari yaratishga ixtisoslashgan raqamli hunarmand. 
+                    Har bir loyihani noyob va esda qolarli qilish uchun dizayn va kod bilan ishlayaman.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#contact" class="btn">Aloqa</a>
+                    <a href="#skills" class="btn btn-secondary">Ishlarim</a>
+                </div>
+            </div>
+
+            <div class="hero-image-container">
+                <div class="hero-image">
+                    <img src="ozodbek.jpg" alt="Ozodbek Kamolov">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills-section" id="skills">
+        <h2 class="section-title fade-in">MALAKALAR</h2>
+        
+        <div class="skills-grid">
+            <div class="skill-card fade-in">
+                <h3>UI/UX Dizayn</h3>
+                <p>Foydalanuvchi tajribasini yo'lga qo'yuvchi vizual dizaynlar yarataman. Har bir element maqsadli va chiroyli.</p>
+            </div>
+
+            <div class="skill-card fade-in">
+                <h3>Frontend Dasturlash</h3>
+                <p>Zamonaviy texnologiyalar yordamida tez va responsive web ilovalar ishlab chiqaman. Clean code - bu mening printsipim.</p>
+            </div>
+
+            <div class="skill-card fade-in">
+                <h3>Interaktiv Animatsiyalar</h3>
+                <p>CSS va JavaScript yordamida sayohat qildiradigan animatsiyalar va o'tishlarni yarataman.</p>
+            </div>
+
+            <div class="skill-card fade-in">
+                <h3>Responsive Dizayn</h3>
+                <p>Barcha qurilmalarda mukammal ko'rinadigan adaptiv dizaynlar ishlab chiqaman.</p>
+            </div>
+
+            <div class="skill-card fade-in">
+                <h3>Brand Identity</h3>
+                <p>Brendingizga mos keladigan yagona vizual tizim va dizayn tilini yarataman.</p>
+            </div>
+
+            <div class="skill-card fade-in">
+                <h3>Performance</h3>
+                <p>Tezlik va optimallashtirishni hisobga olgan holda yuqori sifatli mahsulotlar yarataman.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="skills-section" id="portfolio-work" style="padding-top: 4rem;">
+        <h2 class="section-title fade-in">ISHLARIM</h2>
+        <div id="dynamic-portfolios-grid" class="skills-grid fade-in">
+            <!-- Portfolios will be fetched and injected here via JS -->
+            <p style="text-align:center;width:100%;color:var(--text-secondary)">Yuklanmoqda...</p>
+        </div>
+    </section>
+
+    <!-- Tech Stack -->
+    <section class="tech-stack" id="tech">
+        <h2 class="section-title fade-in">TEXNOLOGIYALAR</h2>
+        
+        <div class="tech-grid">
+            <div class="tech-item fade-in">
+                <svg viewBox="0 0 384 512"><path d="M0 32l34.9 395.8L191.5 480l157.6-52.2L384 32H0zm308.2 127.9H124.4l4.1 49.4h175.6l-13.6 148.4-97.9 27v.3h-1.1l-98.7-27.3-6-75.8h47.7L138 320l53.5 14.5 53.7-14.5 6-62.2H84.3L71.5 112.2h241.1l-4.4 47.7z"/></svg>
+                <span>HTML5</span>
+            </div>
+
+            <div class="tech-item fade-in">
+                <svg viewBox="0 0 384 512"><path d="M0 32l34.9 395.8L192 480l157.1-52.2L384 32H0zm313.1 80l-4.8 47.3L193 208.6l-.3.1h111.5l-12.8 146.6-98.2 28.7-98.8-29.2-6.4-73.9h48.9l3.2 38.3 52.6 13.3 54.7-15.4 3.7-61.6-166.3-.5v-.1l-.2.1-3.6-46.3L193.1 162l6.5-2.7H76.7L70.9 112h242.2z"/></svg>
+                <span>CSS3</span>
+            </div>
+
+            <div class="tech-item fade-in">
+                <svg viewBox="0 0 630 630"><rect width="630" height="630" fill="currentColor"/><path d="m423.2 492.19c12.69 20.72 29.2 35.95 58.4 35.95 24.53 0 40.2-12.26 40.2-29.2 0-20.3-16.1-27.49-43.1-39.3l-14.8-6.35c-42.72-18.2-71.1-41-71.1-89.2 0-44.4 33.83-78.2 86.7-78.2 37.64 0 64.7 13.1 84.2 47.4l-46.1 29.6c-10.15-18.2-21.1-25.37-38.1-25.37-17.34 0-28.33 11-28.33 25.37 0 17.76 11 24.95 36.4 35.95l14.8 6.34c50.3 21.57 78.7 43.56 78.7 93 0 53.3-41.87 82.5-98.1 82.5-54.98 0-90.5-26.2-107.88-60.54zm-209.13 5.13c9.3 16.5 17.76 30.45 38.1 30.45 19.45 0 31.72-7.61 31.72-37.2v-201.3h59.2v202.1c0 61.3-35.94 89.2-88.4 89.2-47.4 0-74.85-24.53-88.81-54.075z" fill="#000"/></svg>
+                <span>JavaScript</span>
+            </div>
+
+            <div class="tech-item fade-in">
+                <svg viewBox="0 0 841.9 595.3"><g fill="currentColor"><path d="M666.3 296.5c0-32.5-40.7-63.3-103.1-82.4 14.4-63.6 8-114.2-20.2-130.4-6.5-3.8-14.1-5.6-22.4-5.6v22.3c4.6 0 8.3.9 11.4 2.6 13.6 7.8 19.5 37.5 14.9 75.7-1.1 9.4-2.9 19.3-5.1 29.4-19.6-4.8-41-8.5-63.5-10.9-13.5-18.5-27.5-35.3-41.6-50 32.6-30.3 63.2-46.9 84-46.9V78c-27.5 0-63.5 19.6-99.9 53.6-36.4-33.8-72.4-53.2-99.9-53.2v22.3c20.7 0 51.4 16.5 84 46.6-14 14.7-28 31.4-41.3 49.9-22.6 2.4-44 6.1-63.6 11-2.3-10-4-19.7-5.2-29-4.7-38.2 1.1-67.9 14.6-75.8 3-1.8 6.9-2.6 11.5-2.6V78.5c-8.4 0-16 1.8-22.6 5.6-28.1 16.2-34.4 66.7-19.9 130.1-62.2 19.2-102.7 49.9-102.7 82.3 0 32.5 40.7 63.3 103.1 82.4-14.4 63.6-8 114.2 20.2 130.4 6.5 3.8 14.1 5.6 22.5 5.6 27.5 0 63.5-19.6 99.9-53.6 36.4 33.8 72.4 53.2 99.9 53.2 8.4 0 16-1.8 22.6-5.6 28.1-16.2 34.4-66.7 19.9-130.1 62-19.1 102.5-49.9 102.5-82.3zm-130.2-66.7c-3.7 12.9-8.3 26.2-13.5 39.5-4.1-8-8.4-16-13.1-24-4.6-8-9.5-15.8-14.4-23.4 14.2 2.1 27.9 4.7 41 7.9zm-45.8 106.5c-7.8 13.5-15.8 26.3-24.1 38.2-14.9 1.3-30 2-45.2 2-15.1 0-30.2-.7-45-1.9-8.3-11.9-16.4-24.6-24.2-38-7.6-13.1-14.5-26.4-20.8-39.8 6.2-13.4 13.2-26.8 20.7-39.9 7.8-13.5 15.8-26.3 24.1-38.2 14.9-1.3 30-2 45.2-2 15.1 0 30.2.7 45 1.9 8.3 11.9 16.4 24.6 24.2 38 7.6 13.1 14.5 26.4 20.8 39.8-6.3 13.4-13.2 26.8-20.7 39.9zm32.3-13c5.4 13.4 10 26.8 13.8 39.8-13.1 3.2-26.9 5.9-41.2 8 4.9-7.7 9.8-15.6 14.4-23.7 4.6-8 8.9-16.1 13-24.1zM421.2 430c-9.3-9.6-18.6-20.3-27.8-32 9 .4 18.2.7 27.5.7 9.4 0 18.7-.2 27.8-.7-9 11.7-18.3 22.4-27.5 32zm-74.4-58.9c-14.2-2.1-27.9-4.7-41-7.9 3.7-12.9 8.3-26.2 13.5-39.5 4.1 8 8.4 16 13.1 24 4.7 8 9.5 15.8 14.4 23.4zM420.7 163c9.3 9.6 18.6 20.3 27.8 32-9-.4-18.2-.7-27.5-.7-9.4 0-18.7.2-27.8.7 9-11.7 18.3-22.4 27.5-32zm-74 58.9c-4.9 7.7-9.8 15.6-14.4 23.7-4.6 8-8.9 16-13 24-5.4-13.4-10-26.8-13.8-39.8 13.1-3.1 26.9-5.8 41.2-7.9zm-90.5 125.2c-35.4-15.1-58.3-34.9-58.3-50.6 0-15.7 22.9-35.6 58.3-50.6 8.6-3.7 18-7 27.7-10.1 5.7 19.6 13.2 40 22.5 60.9-9.2 20.8-16.6 41.1-22.2 60.6-9.9-3.1-19.3-6.5-28-10.2zM310 490c-13.6-7.8-19.5-37.5-14.9-75.7 1.1-9.4 2.9-19.3 5.1-29.4 19.6 4.8 41 8.5 63.5 10.9 13.5 18.5 27.5 35.3 41.6 50-32.6 30.3-63.2 46.9-84 46.9-4.5-.1-8.3-1-11.3-2.7zm237.2-76.2c4.7 38.2-1.1 67.9-14.6 75.8-3 1.8-6.9 2.6-11.5 2.6-20.7 0-51.4-16.5-84-46.6 14-14.7 28-31.4 41.3-49.9 22.6-2.4 44-6.1 63.6-11 2.3 10.1 4.1 19.8 5.2 29.1zm38.5-66.7c-8.6 3.7-18 7-27.7 10.1-5.7-19.6-13.2-40-22.5-60.9 9.2-20.8 16.6-41.1 22.2-60.6 9.9 3.1 19.3 6.5 28.1 10.2 35.4 15.1 58.3 34.9 58.3 50.6-.1 15.7-23 35.6-58.4 50.6zM320.8 78.4z"/><circle cx="420.9" cy="296.5" r="45.7"/></g></svg>
+                <span>React</span>
+            </div>
+
+            <div class="tech-item fade-in">
+                <svg viewBox="0 0 128 128"><path fill="currentColor" d="M2 63.91v62.5h125v-125H2zm100.73-5a15.56 15.56 0 017.82 4.5 20.58 20.58 0 013 4c0 .16-5.4 3.81-8.69 5.85-.12.08-.6-.44-1.13-1.23a7.09 7.09 0 00-5.87-3.53c-3.79-.26-6.23 1.73-6.21 5a4.58 4.58 0 00.54 2.34c.83 1.73 2.38 2.76 7.24 4.86 8.95 3.85 12.78 6.39 15.16 10 2.66 4 3.25 10.46 1.45 15.24-2 5.2-6.9 8.73-13.83 9.9a38.32 38.32 0 01-9.52-.1 23 23 0 01-12.72-6.63c-1.15-1.27-3.39-4.58-3.25-4.82a9.34 9.34 0 011.15-.73l4.6-2.64 3.59-2.08.75 1.11a16.78 16.78 0 004.74 4.54c4 2.1 9.46 1.81 12.16-.62a5.43 5.43 0 00.69-6.92c-1-1.39-3-2.56-8.59-5-6.45-2.78-9.23-4.5-11.77-7.24a16.48 16.48 0 01-3.43-6.25 25 25 0 01-.22-8c1.33-6.23 6-10.58 12.82-11.87a31.66 31.66 0 019.49.26zm-29.34 5.24v5.12H57.16v46.23H45.65V69.26H29.38v-5a49.19 49.19 0 01.14-5.16c.06-.08 10-.12 22-.1h21.81z"/></svg>
+                <span>TypeScript</span>
+            </div>
+
+            <div class="tech-item fade-in">
+                <svg viewBox="0 0 512 512"><path fill="currentColor" d="M511.78 328.07c-1.47-11.92-7.51-22.26-18.14-28.23L327.8 197.48c-6.92-4.33-14.49-6.5-22.04-6.5-7.56 0-15.14 2.17-22.04 6.5L117.81 299.84c-10.63 5.97-16.67 16.31-18.14 28.23-.37 2.89-.57 5.82-.57 8.78 0 22.96 18.6 41.58 41.58 41.58h328.04c1.79 0 3.56-.12 5.3-.35 22.96-3.03 40.53-22.82 40.53-46.23 0-2.96-.2-5.89-.57-8.78zm-132.75-44.63c-23.32 0-42.24-18.92-42.24-42.24s18.92-42.24 42.24-42.24 42.24 18.92 42.24 42.24-18.92 42.24-42.24 42.24z"/></svg>
+                <span>SASS</span>
+            </div>
+
+            <div class="tech-item fade-in">
+                <svg viewBox="0 0 92 92"><path fill="currentColor" d="m90.156 41.965-17.406-10.02c-.193-.11-.428-.11-.62 0l-17.406 10.02c-.19.11-.307.32-.31.545v20.03c.003.225.12.435.31.545l17.406 10.02c.193.11.428.11.62 0l17.406-10.02c.19-.11.307-.32.31-.545v-20.03c-.003-.225-.12-.435-.31-.545zm-18.026 17.406-6.04-3.488 6.04-3.488 6.04 3.488z"/></svg>
+                <span>Git</span>
+            </div>
+
+            <div class="tech-item fade-in">
+                <svg viewBox="0 0 38 57"><path fill="currentColor" d="M19 28.5a9.5 9.5 0 100-19 9.5 9.5 0 000 19z"/><path d="M19 47.5a9.5 9.5 0 100-19 9.5 9.5 0 000 19z"/><path d="M0 38a9.5 9.5 0 0019 0 9.5 9.5 0 00-19 0z"/><path d="M19 0a9.5 9.5 0 000 19h9.5V9.5C28.5 4.253 24.247 0 19 0z"/><path d="M38 19a9.5 9.5 0 01-9.5 9.5H19V0h9.5C33.747 0 38 4.253 38 9.5V19z"/></svg>
+                <span>Figma</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="contact-container">
+            <h2 class="section-title fade-in">ALOQA</h2>
+            
+            <form class="contact-form">
+                <div class="form-group fade-in">
+                    <label class="form-label">Ism</label>
+                    <input type="text" id="contact-name" class="form-input" required>
+                </div>
+
+                <div class="form-group fade-in">
+                    <label class="form-label">Email</label>
+                    <input type="email" id="contact-email" class="form-input" required>
+                </div>
+
+                <div class="form-group fade-in">
+                    <label class="form-label">Mavzu</label>
+                    <input type="text" id="contact-subject" class="form-input">
+                </div>
+
+                <div class="form-group fade-in">
+                    <label class="form-label">Xabar</label>
+                    <textarea id="contact-message" class="form-textarea" required></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn fade-in">YUBORISH</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="https://www.instagram.com/1ozodbek_0_7/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                </a>
+                <a href="https://github.com/ozodbek020907" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                    </svg>
+                </a>
+                <a href="https://www.linkedin.com/in/ozodbek-kamolov/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                        <rect x="2" y="9" width="4" height="12"></rect>
+                        <circle cx="4" cy="4" r="2"></circle>
+                    </svg>
+                </a>
+            </div>
+            
+            <p class="copyright">© 2025 Ozodbek Kamolov • Barcha huquqlar himoyalangan</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Typing effect
+        const text = "Web & UI/UX Dizayner • Frontend Dasturchi";
+        const typingElement = document.querySelector('.typing-effect');
+        let index = 0;
+
+        function type() {
+            if (index < text.length) {
+                typingElement.textContent = text.substring(0, index + 1);
+                index++;
+                setTimeout(type, 100);
+            }
+        }
+
+        setTimeout(type, 1000);
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Form submission integrating with Backend API
+        document.querySelector('.contact-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'YUBORILMOQDA...';
+            submitBtn.disabled = true;
+
+            const payload = {
+                name: document.getElementById('contact-name').value,
+                email: document.getElementById('contact-email').value,
+                subject: document.getElementById('contact-subject').value,
+                message: document.getElementById('contact-message').value
+            };
+
+            try {
+                // Determine API URL based on environment, default to localhost for development
+                const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+                    ? 'http://localhost:3000/api/applications' 
+                    : '/api/applications'; // Needs to reflect production deployment if separated
+                
+                const res = await fetch('http://localhost:3000/api/applications', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (res.ok) {
+                    alert('Xabaringiz yuborildi! Tez orada javob beraman.');
+                    this.reset();
+                } else {
+                    alert('Xatolik yuz berdi. Iltimos, keyinroq qayta urinib ko\'ring.');
+                }
+            } catch (error) {
+                console.error(error);
+                alert('Tarmoq xatosi. Backend serveri ishlayotganiga ishonch hosil qiling.');
+            } finally {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+
+        // Glitch effect on logo
+        setInterval(() => {
+            const logo = document.querySelector('.logo');
+            logo.style.transform = `translate(${Math.random() * 4 - 2}px, ${Math.random() * 4 - 2}px)`;
+            setTimeout(() => {
+                logo.style.transform = 'translate(0, 0)';
+            }, 50);
+        }, 5000);
+        // Fetch and display portfolios
+        async function loadPortfolios() {
+            const grid = document.getElementById('dynamic-portfolios-grid');
+            if (!grid) return;
+            
+            try {
+                // Determine API URL based on environment
+                const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+                    ? 'http://localhost:3000/api/portfolios' 
+                    : '/api/portfolios';
+                    
+                const res = await fetch('http://localhost:3000/api/portfolios');
+                if (res.ok) {
+                    const portfolios = await res.json();
+                    if (portfolios.length > 0) {
+                        grid.innerHTML = portfolios.map(p => `
+                            <div class="skill-card flex flex-col pt-4">
+                                ${p.image_url ? `<img src="${p.image_url}" alt="${p.title}" style="width:100%;height:180px;object-fit:cover;margin-bottom:1rem;border-radius:4px;border:1px solid var(--neon-cyan);"/>` : ''}
+                                <h3 style="font-family:'Orbitron',sans-serif;font-size:1.5rem;color:var(--neon-cyan);margin-bottom:1rem;">${p.title}</h3>
+                                <p style="color:var(--text-secondary);font-size:0.95rem;line-height:1.6;margin-bottom:1rem;flex:1;">${p.description}</p>
+                                ${p.url ? `<a href="${p.url}" target="_blank" style="color:var(--text-primary);text-decoration:none;border-bottom:1px solid var(--neon-magenta);display:inline-block;padding-bottom:2px;margin-top:auto;">Loyihani ochish &rarr;</a>` : ''}
+                            </div>
+                        `).join('');
+                    } else {
+                        grid.innerHTML = '<p style="text-align:center;width:100%;color:var(--text-secondary)">Hozircha malumot yo\'q.</p>';
+                    }
+                }
+            } catch (err) {
+                console.error("Error loading portfolios:", err);
+                grid.innerHTML = '<p style="text-align:center;width:100%;color:red;">Backend server bilan ulanishda xatolik yuz berdi.</p>';
+            }
+        }
+        
+        loadPortfolios();
+    </script>
+</body>
+</html>
