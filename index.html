@@ -975,11 +975,12 @@
 
             try {
                 // Determine API URL based on environment, default to localhost for development
-                const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+                // QACHONKI VERCEL GA YUKLASANGIZ, SHU YERDAGI 'https://admin-ozodbek.vercel.app/api/applications' Yozuvini Vercel bergan URL ga almashtiring!
+                const API_URL = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') 
                     ? 'http://localhost:3000/api/applications' 
-                    : '/api/applications'; // Needs to reflect production deployment if separated
+                    : 'https://admin-ozodbek.vercel.app/api/applications'; 
                 
-                const res = await fetch('http://localhost:3000/api/applications', {
+                const res = await fetch(API_URL, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
@@ -1015,11 +1016,12 @@
             
             try {
                 // Determine API URL based on environment
-                const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+                // QACHONKI VERCEL GA YUKLASANGIZ, SHU YERDAGI 'https://admin-ozodbek.vercel.app/api/portfolios' Yozuvini o'z Vercel manzilingizga almashtiring!
+                const API_URL = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') 
                     ? 'http://localhost:3000/api/portfolios' 
-                    : '/api/portfolios';
+                    : 'https://admin-ozodbek.vercel.app/api/portfolios';
                     
-                const res = await fetch('http://localhost:3000/api/portfolios');
+                const res = await fetch(API_URL);
                 if (res.ok) {
                     const portfolios = await res.json();
                     if (portfolios.length > 0) {
